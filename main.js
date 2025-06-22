@@ -1,3 +1,5 @@
+let ticketCounter = 0;
+
 const form = document.getElementById('form');
 const dragZone = document.getElementById('dragZone');
 const previewImage = document.querySelector('.preview');
@@ -5,22 +7,17 @@ const uploadBtn = document.querySelector('.button');
 const removeBtn = document.querySelector('.remove');
 const changeBtn = document.querySelector('.change');
 const dragzoneBtn = document.querySelector('.dragZone-btn');
-
 const imageStatus = document.getElementById('image-status');
 const imageIcon = document.getElementById('image-icon');
-
 const nameInput = document.getElementById('nameInput');
 const nameStatus = document.getElementById('name-status');
 const nameIcon = document.getElementById('name-icon');
-
 const emailInput = document.getElementById('emailInput');
 const emailStatus = document.getElementById('email-status');
 const emailIcon = document.getElementById('email-icon');
-
 const usernameInput = document.getElementById('usernameInput');
 const usernameStatus = document.getElementById('username-status');
 const usernameIcon = document.getElementById('username-icon');
-
 const greeting = document.getElementById('greeting');
 const announce = document.getElementById('announce');
 const drag = document.getElementById('drag');
@@ -33,7 +30,6 @@ let image = false, name = false, email = false, git = false;
         e.stopPropagation();
     });
 });
-
 
 dragZone.addEventListener('dragover', () => {
     dragZone.classList.add('dragover');
@@ -134,7 +130,7 @@ function checkUsername(username) {
     if (!username) {
         error = 'Please enter your GitHub username.';
     }
-    else if (!/^[a-zA-Z0-9-]{1,9}$/.test(username)) {
+    else if (!/^[a-zA-Z0-9-]{1,39}$/.test(username)) {
         error = 'Invalid GitHub username format.';
     }
     else git = true;
@@ -170,15 +166,18 @@ document.getElementById('form').addEventListener('submit', (e) => {
     else {
         form.style.display = 'none';
 
+        ticketCounter++;
+
+        const ticketNumber = `#${ticketCounter.toString().padStart(4, '0')}`;
+
         const ticket = document.createElement('div');
         ticket.classList.add('generate-ticket');
         ticket.innerHTML = `
         <div class="first-section">
             <img src="assets/images/logo-mark.svg">
-            
             <div style="display: flex; flex-direction: column; justify-content: space-around;">
-            <h2>Coding Conf</h2>
-            <p>Jan 31, 2025 / Austin, TX</p>
+                <h2>Coding Conf</h2>
+                <p>Jan 31, 2025 / Austin, TX</p>
             </div>
         </div>
         <div class="second-section">
@@ -190,11 +189,20 @@ document.getElementById('form').addEventListener('submit', (e) => {
                     <p>${usernameInput.value}</p>
                 </div>
             </div>
+            <p class="ticket-number">${ticketNumber}</p>
         </div>`;
         document.querySelector('.main').appendChild(ticket);
 
-        greeting.innerHTML = `Congrats, <span class="gradient-text">${nameInput.value}</span>! Your ticket is ready.`;
+        const imageTicket = ticket.querySelector('.image-ticket');
+        imageTicket.addEventListener('click', () => {
+            if (imageTicket.classList.contains('rotate')) {
+                imageTicket.classList.remove('rotate');
+            } else {
+                imageTicket.classList.add('rotate');
+            }
+        });
 
+        greeting.innerHTML = `Congrats, <span class="gradient-text">${nameInput.value}</span>! Your ticket is ready.`;
         announce.innerHTML = `We've emailed your ticket to <span style="color: hsl(7, 88%, 67%);">${emailInput.value}</span> and will send updates in the run up to the event.`;
     }
 });
@@ -204,4 +212,3 @@ removeBtn.addEventListener('click', () => {
     dragzoneBtn.style.display = 'none';
     drag.style.display = 'flex';
 });
-

@@ -18,23 +18,28 @@ body {
     height: 100vh;
     padding: 2rem;
 }
+
 h1 {
     font-weight: 800;
     color: white;
     font-size: 4rem;
     text-align: center;
 }
+
 h2 {
     font-size: 2rem;
 }
+
 #announce {
     text-align: center;
     font-size: 1.6rem;
 }
+
 p {
     font-size: 1.2rem;
     line-height: 1.1;
 }
+
 #form {
     display: flex;
     flex-direction: column;
@@ -46,19 +51,25 @@ form label {
     color: white;
     font-weight: 700;
 }
-.pattern-lines, .pattern-circle, .pattern-squiggly-line-top, .pattern-squiggly-line-bottom {
+
+.pattern-lines,
+.pattern-circle,
+.pattern-squiggly-line-top,
+.pattern-squiggly-line-bottom {
     position: fixed;
     z-index: 1;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
+
 .pattern-lines {
     width: 100%;
     height: 50%;
     top: 0;
     background-image: url('assets/images/pattern-lines.svg');
 }
+
 .pattern-squiggly-line-top {
     width: 25%;
     height: 30%;
@@ -67,20 +78,16 @@ form label {
     right: 0;
     top: 3rem;
     background-image: url('assets/images/pattern-squiggly-line-top.svg');
-    /* background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; */
 }
+
 .pattern-circle {
     width: 15%;
     height: 29%;
     right: 15rem;
     bottom: 10rem;
     background-image: url('assets/images/pattern-circle.svg');
-    /* background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; */
 }
+
 .pattern-squiggly-line-bottom {
     width: 50%;
     height: 60%;
@@ -89,10 +96,8 @@ form label {
     display: flex;
     align-items: flex-end;
     background-image: url('assets/images/pattern-squiggly-line-bottom-desktop.svg');
-    /* background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; */
 }
+
 #dragZone {
     width: 100%;
     height: auto;
@@ -107,6 +112,7 @@ form label {
     background-color: rgb(255, 255, 255, 0.1);
     outline-offset: 2px;
 }
+
 #dragZone.dragover {
     border: 2px dashed hsl(252, 6%, 83%);
     background-color: rgb(255, 255, 255, 0.15);
@@ -124,9 +130,11 @@ form label {
     justify-content: center;
     align-items: center;
 }
+
 .button:hover {
     cursor: pointer;
 }
+
 .main {
     display: flex;
     flex-direction: column;
@@ -136,22 +144,26 @@ form label {
     align-items: center;
     gap: 2rem;
 }
+
 .preview {
     width: 3rem;
     height: 3rem;
     object-fit: cover;
     border-radius: 0.7rem;
 }
+
 .box {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
 .info-status {
     display: flex;
     gap: 0.6rem;
     align-items: center;
 }
+
 .box input {
     background-color: rgb(255, 255, 255, 0.1);
     border: solid;
@@ -164,19 +176,26 @@ form label {
     font-weight: 400;
     font-size: 1rem;
 }
+
 .box input::placeholder {
     color: hsl(245, 15%, 58%);
 }
-.box input:focus, #dragZone:focus {
+
+.box input:focus,
+#dragZone:focus {
     outline: 2px solid hsl(245, 15%, 58%);
 }
-.box input:hover, #dragZone:hover {
+
+.box input:hover,
+#dragZone:hover {
     cursor: pointer;
     background-color: rgb(255, 255, 255, 0.2);
 }
+
 .invalid {
     outline: 2px solid hsl(7, 71%, 60%);
 }
+
 .generate-btn {
     background-color: hsl(7, 71%, 60%);
     padding: 0.7rem;
@@ -186,38 +205,40 @@ form label {
     font-size: 1rem;
     color: hsl(248, 70%, 10%);
 }
-.generate-btn:hover, #dragZone:hover {
+
+.generate-btn:hover,
+#dragZone:hover {
     cursor: pointer;
 }
+
 .dragZone-btn {
     display: flex;
     gap: 1rem;
     align-items: center;
 }
-.remove, .change {
+
+.remove,
+.change {
     background-color: rgb(255, 255, 255, 0.2);
     color: white;
     border-radius: 0.5rem;
     padding: 0.5rem;
     border: none;
 }
+
 .remove:hover,
 .change:hover {
     cursor: pointer;
 }
-.gradient-text {
-    background: linear-gradient(90deg, hsl(7, 86%, 67%), hsl(0, 0%, 100%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-}
-.first-section, .second-section {
+
+.first-section,
+.second-section {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
     z-index: 2;
 }
+
 .generate-ticket {
     display: flex;
     flex-direction: column;
@@ -230,23 +251,52 @@ form label {
     background-image: url('assets/images/pattern-ticket.svg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size:contain;
+    background-size: contain;
     min-height: 300px;
-} 
+}
 
 .image-ticket {
     width: 20%;
     height: auto;
     object-fit: cover;
     border-radius: 0.5rem;
+    transition: transform 0.3s ease;
 }
+
+.image-ticket.rotate {
+    transform: rotate(15deg);
+}
+
+.second-section h2.rotate {
+    transform: rotate(10deg);
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.ticket-number {
+    transform: rotate(90deg);
+    position: relative;
+    right: -20px;
+    top: 10px;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
 .first-section h2 {
     font-weight: 700;
 }
+
 .second-section h2 {
     font-weight: 400;
 }
-.first-section p , .second-section p {
+
+.first-section p,
+.second-section p {
     color: hsl(245, 15%, 58%);
     font-size: 1.1rem;
 }
@@ -255,19 +305,22 @@ form label {
     body {
         background-image: url('assets/images/background-mobile.png');
     }
-    
+
     .pattern-squiggly-line-bottom {
         width: 80%;
         background-image: url('assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg');
     }
+
     .main {
         width: 90%;
     }
+
     .generate-ticket {
         width: 100%;
         height: auto;
         gap: 0.7rem;
     }
+
     .generate-ticket p {
         font-size: 0.7rem;
     }
