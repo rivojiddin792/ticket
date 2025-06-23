@@ -161,7 +161,7 @@ usernameInput.addEventListener('blur', () => {
 document.getElementById('form').addEventListener('submit', (e) => {
     e.preventDefault();
     if (!(image && name && email && git)) {
-        alert("Please fill all details!");
+        alert("Please fill it all out!");
     }
     else {
         form.style.display = 'none';
